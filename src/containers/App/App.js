@@ -8,31 +8,25 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import s from './App.css';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import styles from './App.css';
+import themeGlobal from '../../theme/theme.global.css';
 import Header from '../../components/Header';
 import Feedback from '../../components/Feedback';
 import Footer from '../../components/Footer';
 import Helmet from 'react-helmet';
 import { head } from '../../clientConfig';
 
-class App extends Component {
+@withStyles(styles, themeGlobal)
+export default class App extends Component {
 
     static propTypes = {
         children: PropTypes.element.isRequired,
         error: PropTypes.bool,
     };
 
-    static contextTypes = {
-        insertCss: PropTypes.func.isRequired,
-    };
+    componentDidMount() {
 
-    componentWillMount() {
-        const { insertCss } = this.context;
-        this.removeCss = insertCss(s);
-    }
-
-    componentWillUnmount() {
-        this.removeCss();
     }
 
     render() {
@@ -56,5 +50,3 @@ class App extends Component {
     }
 
 }
-
-export default App;
